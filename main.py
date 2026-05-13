@@ -15,12 +15,12 @@ app.add_middleware(
 
 # 1. Load Model IndoBERT Sentiment Analysis dari HuggingFace
 # Saat pertama kali di-run, ini akan men-download weights modelnya
-print("⚙️ Memuat model IndoBERT ke dalam memori...")
+print("Memuat model IndoBERT ke dalam memori...")
 sentiment_analyzer = pipeline(
     "sentiment-analysis", 
     model="mdhugol/indonesia-bert-sentiment-classification"
 )
-print("✅ Model IndoBERT siap menerima request!")
+print("Model IndoBERT siap menerima request!")
 
 class TextRequest(BaseModel):
     text: str
@@ -36,7 +36,7 @@ def analyze_sentiment_bert(text: str) -> str:
     label = result['label']
     score = result['score'] # Tingkat kepercayaan model (0.0 - 1.0)
     
-    print(f"🗣️ Teks: '{text}' | 🤖 Tebakan: {label} (Yakin: {score:.2f})")
+    # print(f"Teks: '{text}' | Tebakan: {label} (Yakin: {score:.2f})")
 
     # 3. Mapping Output Vector Model ke Kategori Emosi AuraKata
     if label == "LABEL_0" or label == "positive":
